@@ -3,13 +3,12 @@ pipeline {
   stages {
     stage('build') {
       steps('Make Virtual Env') {
-        // withEnv(["HOME=${env.WORKSPACE}"]) {
-        //     sh '. .env/bin/activate'
-        //     sh 'pip3 install -r requirements.txt --user'
-        // }
-        withPythonEnv('Python3') {
-            sh 'pip install -r requirements.txt --user'
+        withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh 'pip3 install -r requirements.txt --user'
         }
+        // withPythonEnv('Python3') {
+        //     sh 'pip install -r requirements.txt --user'
+        // }
       }
     }
     stage('test') {
