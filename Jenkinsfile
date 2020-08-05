@@ -11,7 +11,7 @@ pipeline {
         if (!fileExists('.env')){
             echo 'Creating virtualenv ...'
             sh 'virtualenv --no-site-packages .env'
-        fi
+        }
         . .env/bin/activate
         if [[ -f requirements/preinstall.txt ]]; then
             pip install -r requirements/preinstall.txt
