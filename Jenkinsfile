@@ -3,10 +3,12 @@ pipeline {
   stages {
     stage('build') {
       steps {
+        withEnv(["HOME=${env.WORKSPACE}"]) {
         // sh 'virtualenv venv && . venv/bin/activate'
         // sh 'sudo pip install --upgrade pip'
         // sh 'whoami 2>/dev/null'
-        sh 'pip install -r requirements.txt'
+            sh 'pip install -r requirements.txt --user'
+        }
       }
     }
     stage('test') {
