@@ -4,14 +4,15 @@ pipeline {
     stage('build') {
       steps('Make Virtual Env') {
         withEnv(["HOME=${env.WORKSPACE}"]) {
-            echo "${env.WORKSPACE}"
             sh 'pip3 install -r requirements.txt --user'
         }
       }
     }
     stage('test') {
       steps {
-        sh 'python test.py'
+        withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh 'python test.py'
+        }
       }
       post {
         always {
