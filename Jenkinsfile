@@ -3,10 +3,18 @@ pipeline {
   stages {
     stage('build') {
       steps {
-        withEnv(["HOME=${env.WORKSPACE}"]) {
-            sh '. .env/bin/activate'
-            sh 'pip3 install -r requirements.txt --user'
-        }
+        // withEnv(["HOME=${env.WORKSPACE}"]) {
+        //     sh '. .env/bin/activate'
+        //     sh 'pip3 install -r requirements.txt --user'
+        // }
+        sh """
+        . .env/bin/activate
+        if [[ -f requirements/preinstall.txt ]]; then
+            pip install -r requirements/preinstall.txt
+        fi
+        pip install -r requirements/test.txt
+        ./manage.py test --noinput
+        """
       }
     }
     stage('test') {
