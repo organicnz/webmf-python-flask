@@ -4,6 +4,7 @@ pipeline {
     stage('build') {
       steps('Make Virtual Env') {
         withEnv(["HOME=${env.WORKSPACE}"]) {
+            echo "${env.WORKSPACE}"
             sh 'pip3 install -r requirements.txt --user'
         }
       }
