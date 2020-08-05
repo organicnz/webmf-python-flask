@@ -3,6 +3,7 @@ pipeline {
   stages {
     stage('build') {
       steps {
+        sh 'virtualenv venv && . venv/bin/activate'
         sh 'sudo pip install --upgrade pip'
         sh 'pip install -r requirements.txt --user'
       }
