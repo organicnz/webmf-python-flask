@@ -5,7 +5,7 @@ pipeline {
       steps {
         // sh 'virtualenv venv && . venv/bin/activate'
         // sh 'sudo pip install --upgrade pip'
-        sh 'whoami'
+        sh 'whoami 2>/dev/null'
         sh 'pip install -r requirements.txt --user'
       }
     }
