@@ -4,8 +4,8 @@ pipeline {
     stage('build') {
       steps {
         withEnv(["HOME=${env.WORKSPACE}"]) {
+            sh '. .env/bin/activate'
             sh 'pip3 install -r requirements.txt --user'
-            sh '. WORKSPACE/bin/activate'
         }
       }
     }
